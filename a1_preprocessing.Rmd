@@ -21,23 +21,6 @@ bibliography: '../../varia/bibliography.bib'
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE)
-
-# Resetting the environment
-rm(list=ls()) # clears global workspace
-
-# Setting working directory
-knitr::opts_knit$set(root.dir = 'C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1')  
-
-# Loading packages
-pacman::p_load(tidyverse)
-```
-```
-
-
-
-
 The objective of this warm-up assignment is to brush up your programming and data wrangling skills as well as to introduce you to the data set you will be working on in Assignment 1. More precisely, you will here be asked here to do the following:
 
 1. Introduction to version control
@@ -88,10 +71,17 @@ Your job in this assignment is to double-check the data and make it analysis-rea
 
 If you have created a Rstudio project for this assignment, the working directory for this assignment (the default path for any function, procedure or command that works on files) is the project directory. If you have decided otherwise, first make sure that you set your working directory to the path of the current RMarkdown file. You can also use the following code chunk to install and/or load the packages you will need for the tasks below.
 
-```{r setup}
-### Write your code here
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE)
 
+# Resetting the environment
+rm(list=ls()) # clears global workspace
 
+# Setting working directory
+knitr::opts_knit$set(root.dir = "C:/Users/krist/Documents/Cognitive_Science/3rd_sem/Methods3/Exercises/Methods_3_assignment_1")  
+
+# Loading packages
+library(tidyverse)
 ```
 
 Load the following three data sets, after downloading them from dropbox and saving them in your working directory:
@@ -101,8 +91,13 @@ Load the following three data sets, after downloading them from dropbox and savi
 - [Word data](https://www.dropbox.com/scl/fi/h4dop19ctdubhokbfsn2q/token_train.csv?rlkey=wffzcf1211bglrx8239g3e0h8&dl=0)
 
 ```{r import_datasets, message = FALSE}
-### Write your code here
-
+#Loading data
+LU <- read.csv("LU_train.csv")
+head(LU)
+demo <- read.csv("demo_train.csv")
+head(demo)
+token <- read.csv("token_train.csv")
+head(token)
 
 ```
 
@@ -127,9 +122,13 @@ The first task thus consists in identifying which variable names are spelled dif
 Many different procedures can be used here, and unless you have to deal with gigantic data sets and have severe limitations in terms of computation time and space, there is no need for optimization here. Whatever works works.
 
 
-```{r rename_variables}
-### Write your code here
 
+```{r rename_variables}
+LU <- rename(LU, Visit = VISIT)
+demo <- rename(demo, SUBJ = Child.ID)
+token <- rename(token, Visit = VISIT)
+LU$Visit <- str_replace_all(LU$Visit, "visit","")
+LU
 
 ```
 
@@ -139,7 +138,9 @@ Find a way to homogenize the way "visit" is reported amongst the different datas
 
 
 ```{r extract_digits}
-### Write your code here
+
+class("visit")
+
 
 
 ```
