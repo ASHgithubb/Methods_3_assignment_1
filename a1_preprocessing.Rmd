@@ -21,6 +21,23 @@ bibliography: '../../varia/bibliography.bib'
 ---
 
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE)
+
+# Resetting the environment
+rm(list=ls()) # clears global workspace
+
+# Setting working directory
+knitr::opts_knit$set(root.dir = 'C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1')  
+
+# Loading packages
+pacman::p_load(tidyverse)
+```
+```
+
+
+
+
 The objective of this warm-up assignment is to brush up your programming and data wrangling skills as well as to introduce you to the data set you will be working on in Assignment 1. More precisely, you will here be asked here to do the following:
 
 1. Introduction to version control
