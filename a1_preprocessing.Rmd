@@ -28,15 +28,11 @@ knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FA
 rm(list=ls()) # clears global workspace
 
 # Setting working directory
-knitr::opts_knit$set(root.dir = 'C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1')  
+knitr::opts_knit$set(root.dir = 'C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1/')  
 
 # Loading packages
 pacman::p_load(tidyverse)
 ```
-```
-
-
-
 
 The objective of this warm-up assignment is to brush up your programming and data wrangling skills as well as to introduce you to the data set you will be working on in Assignment 1. More precisely, you will here be asked here to do the following:
 
@@ -100,10 +96,14 @@ Load the following three data sets, after downloading them from dropbox and savi
 - [Length of utterance data](https://www.dropbox.com/scl/fi/bk8vi5ra8cqkll0b4rqb1/LU_train.csv?rlkey=4giuq1cvk5jmn9kuwtuf0t2qh&dl=0)
 - [Word data](https://www.dropbox.com/scl/fi/h4dop19ctdubhokbfsn2q/token_train.csv?rlkey=wffzcf1211bglrx8239g3e0h8&dl=0)
 
-```{r import_datasets, message = FALSE}
-### Write your code here
-
-
+```{r}
+#Loading data
+LU <- read.csv("C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1/LU_train.csv")
+head(LU)
+demo <- read.csv("C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1/demo_train.csv")
+head(demo)
+token <- read.csv("C:/Users/Annes/OneDrive - Aarhus universitet/Methods/METHODS_3/Methods_3_assignment_1/token_train.csv")
+head(token)
 ```
 
 Using various visualisation and aggregation procedures, explore these data sets and try to compare them to each other and draw parallel. You'll quickly notice that this is not an easy task. This is in part due to the fact that the different data sets were built by different researchers at different points in time. In particular, you'll find out that: 
@@ -128,8 +128,11 @@ Many different procedures can be used here, and unless you have to deal with gig
 
 
 ```{r rename_variables}
-### Write your code here
-
+LU <- rename(LU, Visit = VISIT)
+demo <- rename(demo, SUBJ = Child.ID)
+token <- rename(token, Visit = VISIT)
+LU$Visit <- str_replace_all(LU$Visit, "visit","")
+LU
 
 ```
 
