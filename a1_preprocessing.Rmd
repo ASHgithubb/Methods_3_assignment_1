@@ -139,9 +139,8 @@ Find a way to homogenize the way "visit" is reported amongst the different datas
 
 ```{r extract_digits}
 
-class("visit")
-
-
+token <- str_replace_all("Visit", "visit") #mangler noget her 
+LU <- str_replace_all("Visit", "visit") # og her
 
 ```
 
